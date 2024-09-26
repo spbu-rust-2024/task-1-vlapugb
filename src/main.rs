@@ -1,3 +1,4 @@
+use ::itertools::Itertools;
 use std::io;
 
 fn insert_sort(s: String) -> Vec<i32> {
@@ -19,7 +20,5 @@ fn main() {
     let mut input = String::new();
     io::stdin().read_line(&mut input).expect("Error");
 
-    for i in insert_sort(input) {
-        print!("{} ", i);
-    }
+    println!("{}", Itertools::join(&mut insert_sort(input).iter(), " "));
 }
