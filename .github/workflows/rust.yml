@@ -1,0 +1,28 @@
+name: Rust
+
+on:
+  push:
+    branches: [ "main" ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build
+      run: cargo build --verbose
+    - name: Tests
+      run: cargo test --verbose
+    - name: Test1
+      run: if [ "$(echo -e ${{ secrets.IN_TASK1_1 }} | cargo run)" = ${{ secrets.OUT_TASK1_1 }} ]; then echo "TEST 1 PASSED"; else echo "TEST 1 FAILED"; exit 105; fi
+    - name: Test2
+      run: if [ "$(echo -e ${{ secrets.IN_TASK1_2 }} | cargo run)" = ${{ secrets.OUT_TASK1_2 }} ]; then echo "TEST 2 PASSED"; else echo "TEST 2 FAILED"; exit 105; fi
+    - name: Test3
+      run: if [ "$(echo -e ${{ secrets.IN_TASK1_3 }} | cargo run)" = ${{ secrets.OUT_TASK1_3 }} ]; then echo "TEST 3 PASSED"; else echo "TEST 3 FAILED"; exit 105; fi
+    - name: Test4
+      run: if [ "$(echo -e ${{ secrets.IN_TASK1_4 }} | cargo run)" = ${{ secrets.OUT_TASK1_4 }} ]; then echo "TEST 4 PASSED"; else echo "TEST 4 FAILED"; exit 105; fi
+    - name: Test5
+      run: if [ "$(echo -e ${{ secrets.IN_TASK1_5 }} | cargo run)" = ${{ secrets.OUT_TASK1_5 }} ]; then echo "TEST 5 PASSED"; else echo "TEST 5 FAILED"; exit 105; fi
